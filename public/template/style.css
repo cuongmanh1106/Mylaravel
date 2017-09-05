@@ -1,0 +1,25 @@
+#wrapper
+		{
+			width: 1000px;
+			height: auto;
+			background:yellow;
+			margin: 0 auto;
+		}
+		#header
+		{
+			height: 300px;
+			background:yellow;
+		
+		}
+		#content
+		{
+			height: 500px;
+			background:blue;
+		
+		}
+		#footer
+		{
+			height: 300px;
+			background:black;
+		
+		}

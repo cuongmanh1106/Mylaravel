@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSanPhamTable extends Migration
+class CreateThanhVienTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateSanPhamTable extends Migration
      */
     public function up()
     {
-        Schema::create('sp', function (Blueprint $table) {
+        Schema::create('ThanhVien',function(Blueprint $table){
             $table->increments('id');
-            $table->string('ten_sp');
-            $table->string('gia');
-            $table->string('hinh');
-            $table->timestamps();
+            $table->string('user');
+            $table->string('pass');
+            $table->tinyInteger('level');
         });
     }
 
@@ -29,6 +28,6 @@ class CreateSanPhamTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('san_pham');
+        //
     }
 }

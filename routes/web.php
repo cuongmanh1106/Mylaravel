@@ -348,10 +348,120 @@ Route::get('relation/one-many',function(){
 	echo "<pre>";
 	print_r($data);
 	echo "</pre>";
+
+//form request
 });
 Route::get('form/layout',function(){
 	return view('form/layout');
 });
 
+
+Route::post('form-data',['as'=>'send-data',function(){
+	return "gui thanh cong";
+}]);
+//bai 36
+Route::get('form-dangki',function(){
+	return view('form.dangki');
+});
+Route::post('form/dk-tv',['as'=>'dang-ki','uses'=>'Mycontroller@Them']);
+//bai 37:
+
+//bai 39
+
+
+//bai 40: upload file
+Route::get('form-upload',function(){
+	return view('form.upload');
+});
+Route::post('form/file',['as'=>'up-load','uses'=>'Mycontroller@Upload']);
+
+
+//Bai 42:response
+
+Route::get('res/json',function(){
+	$arr = array(
+		'mon hoc'=>'Laravel FrameWork 5.x',
+		'Hoc vien'=>'Nguyen Manh Cuong',
+		'thoi gian'=>'right now'
+		);
+	return Response::json($arr);
+});
+
+Route::get('res/xml',function(){
+	$content = '<?xml version="1.0" encoding ="UTF-8" ?>
+		<root>
+			<lop>D14CQCN01</lop>
+			<danhsach>
+				<sv>Nguyễn Mạnh Cường</sv>
+				<sv>Nguyễn huy Tiến</sv>
+				<sv>Đoàn Phương Duy</sv>
+			</danhsach>
+		</root>	
+	';
+	$status = 200;
+	$value = 'text/xml';
+	return Response($content,$status)->header('Content-Type',$value);
+});
+//bai 43 redirect
+
+Route::get('res/redirect',function(){
+	return redirect('res/xml');
+});
+
+Route::get('res/demo',['as'=>'demo',function(){
+	return view('Redirect.form');
+}]);
+//redirect 1 route res/demo
+Route::get('res/redirect-route',function(){
+	return redirect()->route('demo');
+});
+
+//redirect with a messge;
+//refresh lai trang sẽ mât message
+Route::get('res/redirect-route',function(){
+	return redirect()->route('demo')->with([
+			'level' =>'danger',
+			'message'=>'Chao ban'
+		]);
+});
+
+Route::get('res/redirect-back',function(){
+	return redirect()->back();
+});
+Route::get('res/download',function(){
+
+	$url='public/download/demo.rar';
+	return Response::download($url);
+});
+Route::get('res/downloadAndDelete',function(){
+	
+	$url='public/download/demo.rar';
+	return Response::download($url)->deleteFileAfterSend(true);
+});
+//Bai 44
+//In hoa chu cai
+Route::get('res/macro-cap',function(){
+	return Response()->cap('manh cuong hoc lap trinh laravel');
+});
+
+Route::get('res/input',function(){
+	return Response()->input('http://localhost:81/Mylaravel/res/macro-cap');
+});
+
+
+//Bai 45
+Route::get('auth/login',['as'=>'getLogin','uses'=>'ThanhVienController@getLogin']);
+Route::post('auth/login',['as'=>'postLogin','uses'=>'ThanhVienController@postLogin']);
+
+
+
+
+
+route::any('{all?}','Mycontroller@index')->where('all','(.*)'); //chuyen tat ca url khong co ve trang chu
+
 	
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

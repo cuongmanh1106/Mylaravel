@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLoaiSpTable extends Migration
+class InsertcoloumSanPham extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateLoaiSpTable extends Migration
      */
     public function up()
     {
-        Schema::create('loaisp', function (Blueprint $table) {
-            $table->increments('id');
-            $table->String('hoten');
-            $table->String('sdt');
-            $table->String('email');
-            $table->timestamps();
+        schema::table('san_pham',function($table){
+            $table->string('hinh');
         });
     }
 
@@ -29,6 +25,6 @@ class CreateLoaiSpTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loaisp');
+        //
     }
 }
